@@ -11,6 +11,7 @@ This project is a full-stack web application built using FastAPI for the backend
 
 ## Project Structure
 
+```
 project/
 ├── fastapi-app/
 │   ├── app/
@@ -32,6 +33,8 @@ project/
 ├── docker-compose.yml
 ├── Taskfile.yml
 └── README.md
+
+```
 
 ## Prerequisites
 
