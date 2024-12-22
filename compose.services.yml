@@ -1,0 +1,5 @@
+name: react-fastapi-crud-app
+
+include:
+  - fastapi-app/docker-compose.yml
+  - react-app/docker-compose.yml

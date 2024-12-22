@@ -1,0 +1,31 @@
+name: react-fastapi-crud-app
+version: "3.12"
+
+services:
+  fastapi-app:
+    container_name: fastapi-app
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: "postgresql://postgres:password@database:5432/postgres_db"
+
+  database:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

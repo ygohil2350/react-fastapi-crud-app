@@ -1,0 +1,47 @@
+{
+    // Python settings
+    "python.pythonPath": ".venv/bin/python", 
+    "python.formatting.provider": "black", 
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true, 
+    "python.linting.mypyEnabled": true,
+    "python.sortImports.path": "isort", 
+    "python.formatting.blackPath": "black",
+    "editor.formatOnSave": true,
+
+    // Node.js/JavaScript/TypeScript settings
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+
+    // Prettier settings
+    "prettier.requireConfig": true, // Ensure Prettier only formats files with .prettierrc config
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+
+    // General settings
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "**/node_modules": true
+    },
+    "files.associations": {
+        "*.json": "jsonc" // JSON files treated as JSON with comments
+    }
+}

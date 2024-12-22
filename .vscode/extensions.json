@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+      "ms-python.python",         // Python extension for linting, debugging, and IntelliSense
+      "ms-python.isort",          // Organizes Python imports
+      "esbenp.prettier-vscode",   // Prettier for code formatting
+      "dbaeumer.vscode-eslint",   // ESLint for JavaScript/TypeScript linting
+      "humao.rest-client",        // REST client for API testing
+      "redhat.vscode-yaml",       // YAML support
+      "github.vscode-pull-request-github", // GitHub Pull Requests and Issues
+      "eamodio.gitlens",          // GitLens for Git insights
+      "editorconfig.editorconfig" // EditorConfig for consistent coding styles
+    ]
+  }
+  

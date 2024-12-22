@@ -1,0 +1,23 @@
+version: "3"
+
+env:
+  COMPOSE_PARALLEL_LIMIT: 2
+  COMPOSE_IGNORE_ORPHANS: true
+dotenv:
+  - .env
+
+vars:
+  API_SERVICES: fastapi-app
+  WEB_SERVICES: react-app
+
+tasks:
+  up:
+    desc: Seed all database
+    vars:
+      SAMPLE_LOAD: true
+    cmds:
+      - docker compose -f compose.services.yml up -d --build --wait
+  down:
+    desc: Stop all services
+    cmds:
+      - docker compose -f compose.services.yml  down --volumes
