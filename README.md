@@ -44,7 +44,7 @@ project/
 1. Clone the Repository
 
 ```bash
-git clone 
+git clone https://github.com/ygohil2350/react-fastapi-crud-app.git
 cd react-fastapi-crud-app
 ```
 
