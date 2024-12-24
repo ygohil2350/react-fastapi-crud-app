@@ -1,6 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import React from 'react';
 import CrudDataTable from './components/CrudDataTable';
+import AuthWrapper from './components/AuthWrapper';
 
 function App() {
   const tabs = [
@@ -27,38 +28,40 @@ function App() {
   };
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        bgcolor: 'background.paper',
-        display: 'flex',
-        height: 224,
-      }}
-    >
-      <Box sx={{ borderRight: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} orientation="vertical">
-          {tabs.map((item) => (
-            <Tab
-              label={item.label}
-              id={`simple-tab-${item.index}`}
-              key={`simple-tab-${item.index}`}
-              aria-controls={`simple-tabpanel-${item.index}`}
-            />
-          ))}
-        </Tabs>
+    <AuthWrapper>
+      <Box
+        sx={{
+          flexGrow: 1,
+          bgcolor: 'background.paper',
+          display: 'flex',
+          height: 224,
+        }}
+      >
+        <Box sx={{ borderRight: 1, borderColor: 'divider' }}>
+          <Tabs value={value} onChange={handleChange} orientation="vertical">
+            {tabs.map((item) => (
+              <Tab
+                label={item.label}
+                id={`simple-tab-${item.index}`}
+                key={`simple-tab-${item.index}`}
+                aria-controls={`simple-tabpanel-${item.index}`}
+              />
+            ))}
+          </Tabs>
+        </Box>
+        {tabs.map((item) => (
+          <div
+            role="tabpanel"
+            hidden={value !== item.index}
+            id={`simple-tabpanel-${item.index}`}
+            aria-labelledby={`simple-tab-${item.index}`}
+            key={`simple-tabpanel-${item.index}`}
+          >
+            {value === item.index && <Box sx={{ p: 3 }}>{item.children}</Box>}
+          </div>
+        ))}
       </Box>
-      {tabs.map((item) => (
-        <div
-          role="tabpanel"
-          hidden={value !== item.index}
-          id={`simple-tabpanel-${item.index}`}
-          aria-labelledby={`simple-tab-${item.index}`}
-          key={`simple-tabpanel-${item.index}`}
-        >
-          {value === item.index && <Box sx={{ p: 3 }}>{item.children}</Box>}
-        </div>
-      ))}
-    </Box>
+    </AuthWrapper>
   );
 }
 
