@@ -9,15 +9,23 @@ import {
   TextField,
 } from '@mui/material';
 import {
-  GridColDef,
   DataGrid,
-  GridToolbar,
   GridActionsCellItem,
-  GridRowId,
-  GridFooterContainer,
+  GridColDef,
   GridFooter,
+  GridFooterContainer,
+  GridRowId,
+  GridToolbar,
 } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
+import { fetchData, request } from '../../utils/apiHelpers';
+
+interface IItemRows {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
 
 function CrudDataTable() {
   const columns: GridColDef<(typeof rows)[number]>[] = [
@@ -58,9 +66,8 @@ function CrudDataTable() {
       },
     },
   ];
-  const [rows, setRows] = useState<
-    { id: string; name: string; price: number; description: string }[]
-  >([]);
+
+  const [rows, setRows] = useState<IItemRows[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const formInitialState = {
@@ -86,41 +93,50 @@ function CrudDataTable() {
       </GridFooterContainer>
     );
   };
+
   const handleEditClick = (id: GridRowId) => {
     // setFormData({ id });
     console.debug(id);
     setIsEdit(true);
     setOpenDialog(true);
   };
+
   const handleDeleteClick = (id: GridRowId) => {
-    console.debug(id);
+    request(`http://localhost:8000/items/${id}`, { method: 'DELETE' });
+    getItems();
   };
+
   const handleDialogOpen = () => {
     setFormData(formInitialState);
     setOpenDialog(true);
   };
+
   const handleCloseDialog = () => {
     setFormData(formInitialState);
     setOpenDialog(false);
   };
+
   const handleSubmit = () => {
     console.debug(formData);
   };
-  const fetchData = async () => {
+
+  const getItems = async () => {
     try {
-      const response = await fetch('http://localhost:8000/items');
-      const result = await response.json();
-      setRows(result);
+      const response = await fetchData('http://localhost:8000/items');
+      setRows(response as IItemRows[]);
     } catch (error) {
       console.error(error);
     }
   };
+
   const handleChange = (event: any) => {
     setFormData((pre) => ({ ...pre, [event.target.name]: event.target.value }));
   };
+
   useEffect(() => {
-    fetchData();
+    getItems();
   }, []);
+
   return (
     <Box sx={{ height: 400, width: '100vh' }}>
       <DataGrid

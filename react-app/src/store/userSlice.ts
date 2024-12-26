@@ -15,9 +15,9 @@ interface UserState {
 // Define the initial state using that type
 const initialState: UserState = {
   userDetails: {
-    email: '',
-    userName: '',
-    id: '',
+    email: 'yashGohil@test.com',
+    userName: 'YGohil',
+    id: crypto.randomUUID(),
   },
 };
 

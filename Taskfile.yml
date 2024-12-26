@@ -21,3 +21,7 @@ tasks:
     desc: Stop all services
     cmds:
       - docker compose -f compose.services.yml  down --volumes
+  startReact:
+    desc: Start Front-End services locally
+    cmds:
+      - cd react-app && pnpm run dev

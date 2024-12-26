@@ -8,12 +8,13 @@ export interface FetchOptions extends RequestInit {
  * @param options - Additional fetch options.
  * @returns The parsed JSON response.
  */
+const apiUrl = 'http://localhost:8000/';
 export const fetchData = async <T>(
-  url: string,
+  endpoint: string,
   options: FetchOptions = {}
 ): Promise<T> => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${apiUrl}${endpoint}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -43,12 +44,12 @@ export const fetchData = async <T>(
  * @returns The parsed JSON response.
  */
 export const postData = async <T, R>(
-  url: string,
+  endpoint: string,
   data: T,
   options: FetchOptions = {}
 ): Promise<R> => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${apiUrl}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -78,11 +79,11 @@ export const postData = async <T, R>(
  * @returns The parsed JSON response.
  */
 export const request = async <T>(
-  url: string,
+  endpoint: string,
   options: FetchOptions
 ): Promise<T> => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${apiUrl}${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
         ...(options.headers || {}),
